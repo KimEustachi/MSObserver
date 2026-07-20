@@ -1,0 +1,10 @@
+# Ergebnisdateien enthalten Hostname, Prozesspfade und moeglicherweise
+# Geraetekennungen. Sie gehoeren nicht in die Versionskontrolle.
+src/output/
+*.html
+!docs/**/*.html
+
+# Betriebssystem
+Thumbs.db
+desktop.ini
+.DS_Store

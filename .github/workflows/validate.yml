@@ -1,0 +1,54 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  database:
+    name: Endpoint database
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate against schema
+        run: |
+          npm install -g ajv-cli
+          ajv validate -s data/schema.json -d data/endpoints.json --strict=false
+
+      - name: Require evidence for every entry
+        run: |
+          node -e "
+            const db = require('./data/endpoints.json');
+            const errors = [];
+            for (const e of db.endpoints) {
+              if (e.evidence === 'documented' && !e.source && !db.reference) {
+                errors.push(e.domain + ': documented without source');
+              }
+              if (e.evidence !== 'documented' && !e.notes) {
+                errors.push(e.domain + ': ' + e.evidence + ' without capture note');
+              }
+            }
+            if (errors.length) { console.error(errors.join('\n')); process.exit(1); }
+            console.log(db.endpoints.length + ' entries validated');
+          "
+
+  powershell:
+    name: PowerShell
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Static analysis
+        shell: pwsh
+        run: |
+          Install-Module PSScriptAnalyzer -Force -Scope CurrentUser
+          $findings = Invoke-ScriptAnalyzer -Path src -Recurse -Severity Error
+          if ($findings) { $findings | Format-Table; exit 1 }
+
+      - name: Unit tests
+        shell: pwsh
+        run: |
+          Install-Module Pester -Force -Scope CurrentUser -MinimumVersion 5.0
+          Invoke-Pester -Path tests -CI

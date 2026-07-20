@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MSObserver endpoint database",
+  "type": "object",
+  "required": ["version", "updated", "endpoints"],
+  "properties": {
+    "version": { "type": "string" },
+    "updated": { "type": "string", "format": "date" },
+    "reference": { "type": "string", "format": "uri" },
+    "endpoints": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/endpoint" }
+    }
+  },
+  "definitions": {
+    "endpoint": {
+      "type": "object",
+      "required": ["domain", "service", "categories", "trigger", "severity", "evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "domain": {
+          "type": "string",
+          "description": "Fully qualified domain name; leading wildcard allowed.",
+          "pattern": "^\\*?[A-Za-z0-9*][A-Za-z0-9.*-]+\\.[A-Za-z]{2,}$"
+        },
+        "service": {
+          "type": "string",
+          "description": "Windows service or component responsible for the traffic."
+        },
+        "process": {
+          "type": "string",
+          "description": "Process observed initiating the connection."
+        },
+        "categories": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string" },
+          "description": "Data categories transmitted. Documented or observed facts only."
+        },
+        "trigger": {
+          "type": "string",
+          "description": "What causes the transmission: boot, schedule, event, interval."
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["security", "update", "system", "account", "telemetry", "content", "advertising"],
+          "description": "security, update and system denote protective or functional traffic; telemetry denotes diagnostic collection; content follows from user activity; advertising serves recommendation systems."
+        },
+        "evidence": {
+          "type": "string",
+          "enum": ["documented", "observed", "community-reported"],
+          "description": "documented requires a source link; observed requires a reproducible capture; community-reported requires evidence in the pull request."
+        },
+        "source": { "type": "string", "format": "uri" },
+        "editions": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["Home", "Pro", "Education", "Enterprise"] }
+        },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

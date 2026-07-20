@@ -1,0 +1,59 @@
+name: Neuer Endpunkt
+description: Eine beobachtete Domain zur Endpunktdatenbank vorschlagen
+labels: [endpoint]
+body:
+  - type: input
+    id: domain
+    attributes:
+      label: Domain
+      placeholder: beispiel.events.data.microsoft.com
+    validations:
+      required: true
+
+  - type: input
+    id: process
+    attributes:
+      label: Verantwortlicher Prozess
+      placeholder: svchost.exe -k utcsvc
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Kategorie
+      options:
+        - security
+        - update
+        - system
+        - account
+        - telemetry
+        - content
+        - advertising
+    validations:
+      required: true
+
+  - type: textarea
+    id: system
+    attributes:
+      label: Testsystem
+      description: Windows-Version, Edition, Diagnosestufe
+      placeholder: |
+        Windows 11 Home, Build 26200
+        Diagnosestufe: Required
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Nachweis
+      description: Erfassungswerkzeug, Zeitraum und relevanter Auszug. Kennungen bitte ersetzen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduktion
+      description: Falls ereignisgesteuert, die Schritte zum Auslösen.
