@@ -65,13 +65,14 @@ nicht versteht — der Runner prüft die Version und nennt den Installationsbefe
 Install-Module Pester -MinimumVersion 5.0 -Force -SkipPublisherCheck -Scope CurrentUser
 ```
 
-## Grundsätze
+## Scope
 
-Zwei Entscheidungen stehen nicht zur Diskussion:
+MSObserver blockiert nichts. Dafür gibt es O&O ShutUp10, privacy.sexy und
+WindowsSpyBlocker — die machen ihre Sache gut, und ein weiteres Werkzeug dieser
+Art braucht niemand. Hier geht es um die Frage davor: zu wissen, was man da
+eigentlich abschaltet. Pull Requests, die Blockierfunktionen einbauen, lehne ich
+ab. Im Report auf ein passendes Werkzeug zu verweisen, ist dagegen in Ordnung.
 
-**MSObserver blockiert nicht.** Es beobachtet und erklärt. Werkzeuge zum
-Abschalten existieren bereits; dieses Projekt liefert die Grundlage für
-Entscheidungen.
-
-**MSObserver überträgt nichts.** Kein Telemetrie-Werkzeug, das selbst Daten
-sendet. Auch keine externen Ressourcen im Report.
+Außerdem sendet MSObserver selbst nichts. Der Report lädt keine Schriften von
+einem CDN, ruft keine Statistik ab und prüft nicht auf Updates. Ein Werkzeug,
+das Telemetrie untersucht und dabei eigene erzeugt, wäre schwer zu erklären.
