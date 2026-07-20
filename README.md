@@ -9,7 +9,7 @@ Systemeinstellungen und überträgt selbst keinerlei Daten. Alle Ergebnisse
 bleiben als lokale Dateien auf dem eigenen Rechner.
 
 ```powershell
-git clone https://github.com/<benutzer>/MSObserver.git
+git clone https://github.com/KimEustachi/MSObserver.git
 cd MSObserver\src
 .\Invoke-MSObserver.ps1 -DurationSeconds 300 -OpenReport
 ```

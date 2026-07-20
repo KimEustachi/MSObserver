@@ -1,0 +1,16 @@
+# Normalise line endings in the repository, check out native on Windows.
+* text=auto
+
+# PowerShell and Windows-specific files always use CRLF in the working copy.
+*.ps1   text eol=crlf
+*.psd1  text eol=crlf
+*.psm1  text eol=crlf
+*.cmd   text eol=crlf
+*.bat   text eol=crlf
+
+# Cross-platform files stay LF.
+*.md    text eol=lf
+*.json  text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+LICENSE text eol=lf
