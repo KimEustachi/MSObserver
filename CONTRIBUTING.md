@@ -67,12 +67,9 @@ Install-Module Pester -MinimumVersion 5.0 -Force -SkipPublisherCheck -Scope Curr
 
 ## Scope
 
-MSObserver blockiert nichts. Dafür gibt es O&O ShutUp10, privacy.sexy und
-WindowsSpyBlocker — die machen ihre Sache gut, und ein weiteres Werkzeug dieser
-Art braucht niemand. Hier geht es um die Frage davor: zu wissen, was man da
-eigentlich abschaltet. Pull Requests, die Blockierfunktionen einbauen, lehne ich
-ab. Im Report auf ein passendes Werkzeug zu verweisen, ist dagegen in Ordnung.
+MSObserver ist nicht dafür gedacht zu blockieren. Dafür gibt es O&O ShutUp10, privacy.sexy und
+WindowsSpyBlocker — die machen ihre Sache gut. Hier geht es um die Frage was bekommt MS alles von mir.
 
-Außerdem sendet MSObserver selbst nichts. Der Report lädt keine Schriften von
+Außerdem ist MSObserver nur ein tool was lokal läuft. Der Report lädt keine Schriften von
 einem CDN, ruft keine Statistik ab und prüft nicht auf Updates. Ein Werkzeug,
 das Telemetrie untersucht und dabei eigene erzeugt, wäre schwer zu erklären.
